@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=0, user-scalable=0" />
+      <meta name="Description" content="PWA WORKSHOP" />
+      <meta name="Description" content="Author: YOU" />
+      <link type="text/css" href="./css/pwa-course.css" rel="stylesheet" />
+      <!-- $PWA -->
+      <link rel="manifest" href="./manifest.json" />
+
+      <!-- The theme-color value for the name attribute of the meta element indicates a suggested color that user agents should use to customize the display of the page or of the surrounding user interface. If specified, the content attribute must contain a valid CSS color. -->
+      <meta name="theme-color" content="#2196f3" />
+      <!-- Apple -->
+      <meta name="apple-mobile-web-app-title" content="wpPWA" />
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+      <!-- or translucent -->
+      <link rel="apple-touch-startup-image" href="./images/wppwa.png" />
+      <link rel="apple-touch-icon" sizes="180x180" href="./images-manifest/apple-touch-icon-180x180.png" />
+      <link rel="icon" type="image/png" href="./images-manifest/icon-144x144.png" sizes="144x144" />
+      <!-- Microsoft -->
+      <meta name="msapplication-TileColor" content="#2D91F8" />
+      <meta name="msapplication-TileImage" content="./images-manifest/icons/ms-icon-144x144.png" />
+
+      <!-- cross browser omitted for intermiary lessons -->
+      <title>40</title>
+
+      <!-- IndexedDB LIBRARY -->
+      <script src="./js/idb.js"></script>
+      <!-- LocalBasLibrary-->
+      <script src="https://unpkg.com/localbase/dist/localbase.min.js"></script>
+
+      <!-- IndexedDB UTILITY FUNCTIONS -->
+      <script src="./js/idb-fn.js"></script>
+      <!-- CAPTURE ADD TO HOMEe SCREEN EVENT -->
+
+      <script src="./js/load-posts.js"></script>
+      <script src="./js/load-contacts.js"></script>
+   </head>
+
+   <body>
+      <!-- $PWA -->
+      <!-- REGISTER SERVICE WORKER -->
+      <script src="./js/register-sw.js"></script>
+      <nav class="navbar">
+         <div>
+            <img src="./images/offline.png" id="offline-image"
+               style="display: none; width: 30px; color: white; height: 30px; margin-left: 10px" alt="offline image" />
+         </div>
+         <div class="navbar-links">
+            <ul>
+               <li><a href="index.html">HOME</a></li>
+               <li><a href="articles.html">POSTS</a></li>
+               <li><a href="contacts.html">CONTACTS</a></li>
+               <li><a href="form.html">FORM</a></li>
+            </ul>
+         </div>
+      </nav>
+
+      <main>
+         <div class="card">
+            <button id="add">ADD TO HOMESCREEN</button>
+            <br /><br />
+            <h1>40</h1>
+            <p style="color: red">sw message commented out in SW - do in 43</p>
+            <p>We register a SYNC event and save form data in IndexedDB.</p>
+            <p>
+               The SW will listen for this event and then get data from IndexedDB and send if ONLINE.
+            </p>
+            <p>If OFFLINE, it will poll taks queue and then send form once back online.</p>
+            <p>We have moved SW messaging functions to sw-messaging.js and imported it into SW.</p>
+         </div>
+         <div style="height: 40px"></div>
+      </main>
+
+      <script>
+         loadPosts();
+         loadContacts();
+      </script>
+
+      <footer>
+         <div>
+            <p>PWA WORKSHOP - &copy; Craig West 2020</p>
+         </div>
+      </footer>
+      <!-- $PWA -->
+      <script src="./js/deferrred-prompt.js"></script>
+
+      <!-- MAINTAIN OFFLINE STYLE WHEN NAVIGATING OFFLINE -->
+      <script src="./js/is-offline.js"></script>
+      <!-- RESPOND TO CHANGE IN ONLINE?OFFLINE -->
+      <script src="./js/gone-offline.js"></script>
+
+   </body>
+
+</html>

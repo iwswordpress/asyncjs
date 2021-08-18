@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=0, user-scalable=0" />
+        <meta name="Description" content="PWA WORKSHOP" />
+        <meta name="Description" content="Author: YOU" />
+        <link type="text/css" href="./css/pwa-course.css" rel="stylesheet" />
+        <!-- $PWA -->
+        <link rel="manifest" href="./manifest.json" />
+
+        <!-- The theme-color value for the name attribute of the meta element indicates a suggested color that user agents should use to customize the display of the page or of the surrounding user interface. If specified, the content attribute must contain a valid CSS color. -->
+        <meta name="theme-color" content="#2196f3" />
+        <!-- Apple -->
+        <meta name="apple-mobile-web-app-title" content="wpPWA" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <!-- or translucent -->
+        <link rel="apple-touch-startup-image" href="./images/wppwa.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="./images-manifest/apple-touch-icon-180x180.png" />
+        <link rel="icon" type="image/png" href="./images-manifest/icon-144x144.png" sizes="144x144" />
+        <!-- Microsoft -->
+        <meta name="msapplication-TileColor" content="#2D91F8" />
+        <meta name="msapplication-TileImage" content="./images-manifest/icons/ms-icon-144x144.png" />
+
+        <!-- cross browser omitted for intermiary lessons -->
+        <title>40</title>
+
+        <!-- IndexedDB LIBRARY -->
+        <script src="./js/idb.js"></script>
+        <!-- LocalBasLibrary-->
+
+        <!-- IndexedDB UTILITY FUNCTIONS -->
+        <script src="./js/idb-fn.js"></script>
+
+    </head>
+
+    <body>
+
+        <nav class="navbar">
+            <div>
+                <img src="./images/offline.png" id="offline-image"
+                    style="display: none; width: 30px; color: white; height: 30px; margin-left: 10px"
+                    alt="offline image" />
+            </div>
+            <div class="navbar-links">
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="articles.html">POSTS</a></li>
+                    <li><a href="contacts.html">CONTACTS</a></li>
+                    <li><a href="form.html">FORM</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <main>
+            <div class="card">
+                <div id="btnWrapper">
+                    <p>If you would like to receive Notifications please click...</p>
+                    <button id="notifications" class="w3-button w3-blue w3-medium">
+                        ENABLE NOTIFICATIONS
+                    </button>
+                    <!-- REQEUST NOTIFICATIONS PERMISSION -->
+                    <script src="./js/request-notifications-permission.js"></script>
+                    <br />
+                </div>
+                <div class="contact-form">
+                    <div>
+                        <input type="text" id="email" name="email" placeholder="Your email" size="40" />
+                    </div>
+                    <div>
+                        <button id="submit" class="">Subscribe</button>
+                    </div>
+                </div>
+                <div id="output" style="margin-top: 20px"></div>
+                <div id="sw-message" class="form-sw-message">SW messages here</div>
+                <div>
+                    <p>
+                        We send our email lower case. It gets stored in IDB and then a SYNC event, (TAG), is fired.
+                    </p>
+                    <p>The SW listens for this TAG and then gets data from IDB, posts data to an API that just mirrors
+                        back what was sent.</p>
+                    <p>A message and notification are sent with the mirror value turned to uppercase.</p>
+                    <p>If offline, the event is queued and executed when back online even if the browser is closed.</p>
+
+                </div>
+            </div>
+            <div style="height: 40px"></div>
+        </main>
+
+        <footer>
+            <div class="w3-container w3-blue w3-center footer">
+                <p>PWA WORKSHOP - &copy; Craig West 2020</p>
+            </div>
+        </footer>
+        <script src="./js/idb.js"></script>
+        <script src="./js/idb-fn.js"></script>
+        <script>
+            // Listen for SW message
+            const sw = document.getElementById('sw-message');
+            sw.innerHTML = 'message from service worker goes here: ';
+            // add an event listener for mesage from SW
+            navigator.serviceWorker.addEventListener('message', function (event) {
+                sw.innerHTML += event.data;
+                document.getElementById('output');
+                output.classList.remove('form-message-offline');
+                output.classList.add('form-message-online');
+                output.innerHTML = 'We have received your form.';
+                document.getElementById('email').value = '';
+            });
+            document.getElementById('submit').addEventListener('click', function (event) {
+                event.preventDefault();
+                console.log('event prevented');
+                var email = document.getElementById('email').value;
+
+                var formData = {
+                    syncID: 'CONTACT-FORM', // syncID is set up as keypath in idb-fn
+                    data: email,
+                };
+                console.log('formData: ', formData);
+                // Data will be saved if there is a SYNV MANAGER
+
+                // SET UP of sync event that will handle form both online and offline
+                // This will get data from IndexedDB and do POST
+                if ('serviceWorker' in navigator && 'SyncManager' in window) {
+                    console.log(`%cSYMC MANAGER AVAILABLE`, 'color:green; font-size:18px');
+                    writeData('FORM-DATA', formData)
+                        .then(() => {
+                            console.log('Email data stored...might need IDB referesh...');
+                            // serviceWorker registered at top of page
+                            navigator.serviceWorker.ready.then(function (swRegistration) {
+                                console.log('register sync SEND');
+
+                                // REGISTER SYNC EVENT
+                                swRegistration.sync
+                                    .register('SEND-CONTACT-FORM') // this is called the 'tag'
+                                    // we can list out all registered sync events including the one
+                                    // just registered
+                                    .then(function () {
+                                        return swRegistration.sync.getTags();
+                                    })
+                                    .then(function (tags) {
+                                        console.log(`%cReg Tasks: ${tags}`, 'color:green; font-size:20px');
+                                    });
+
+                                if (!navigator.onLine) {
+                                    const output = document.getElementById('output');
+                                    output.innerHTML = 'FORM DATA SAVED AND WILL BE SENT WHEN BACK ONLINE';
+                                    output.classList.remove('form-message-online');
+                                    output.classList.add('form-message-offline');
+                                } else {
+                                    // TO const {propertyName} = objectToDestruct
+                                    // post form as we are online
+                                    const output = document.getElementById('output');
+                                    output.innerHTML = 'FORM DATA SENT (go to message sent page...)';
+                                    output.classList.remove('form-message-offline');
+                                    output.classList.add('form-message-online');
+                                    document.getElementById('email').value = '';
+                                }
+                            });
+                        });
+
+                } else {
+                    //regular sending of form
+                }
+            });
+        </script>
+
+        <!-- MAINTAIN OFFLINE STYLE WHEN NAVIGATING OFFLINE -->
+        <script src="./js/is-offline.js"></script>
+        <!-- RESPOND TO CHANGE IN ONLINE?OFFLINE -->
+        <script src="./js/gone-offline.js"></script>
+
+    </body>
+
+</html>

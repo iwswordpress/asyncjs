@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta
+         name="viewport"
+         content="width=device-width, initial-scale=1, shrink-to-fit=0, user-scalable=0"
+      />
+      <meta name="Description" content="PWA WORKSHOP" />
+      <meta name="Description" content="Author: YOU" />
+      <link type="text/css" href="./css/pwa-course.css" rel="stylesheet" />
+      <!-- $PWA -->
+      <link rel="manifest" href="./manifest.json" />
+      <title>SAMPLE 02</title>
+      <!-- The theme-color value for the name attribute of the meta element indicates a suggested color that user agents should use to customize the display of the page or of the surrounding user interface. If specified, the content attribute must contain a valid CSS color. -->
+      <meta name="theme-color" content="#2196f3" />
+      <!-- Apple -->
+      <meta name="apple-mobile-web-app-title" content="wpPWA" />
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+      <!-- or translucent -->
+      <link rel="apple-touch-startup-image" href="./images/wppwa.png" />
+      <link
+         rel="apple-touch-icon"
+         sizes="180x180"
+         href="./images-manifest/apple-touch-icon-180x180.png"
+      />
+      <link rel="icon" type="image/png" href="./images-manifest/icon-144x144.png" sizes="144x144" />
+      <!-- Microsoft -->
+      <meta name="msapplication-TileColor" content="#2D91F8" />
+      <meta name="msapplication-TileImage" content="./images-manifest/icons/ms-icon-144x144.png" />
+   </head>
+
+   <body>
+      <nav class="navbar">
+         <div>
+            <img
+               src="./images/offline.png"
+               id="offline-image"
+               style="display: none; width: 30px; color: white; height: 30px; margin-left: 10px"
+               alt="offline image"
+            />
+         </div>
+         <div class="navbar-links">
+            <ul>
+               <li><a href="index.html">HOME</a></li>
+               <li><a href="articles.html">POSTS</a></li>
+               <li><a href="contacts.html">CONTACTS</a></li>
+               <li><a href="form.html">FORM</a></li>
+            </ul>
+         </div>
+      </nav>
+
+      <main>
+         <div class="card">
+            <div style="padding: 30px">
+               <h1>SAMPLE02</h1>
+
+               <p>
+                  One morning, when Gregor Samsa woke from troubled dreams, he found himself
+                  transformed in his bed into a horrible vermin. He lay on his armour-like back, and
+                  if he lifted his head a little he could see his brown belly, slightly domed and
+                  divided by arches into stiff sections. The bedding was hardly able to cover it and
+                  seemed ready to slide off any moment. His many legs, pitifully thin compared with
+                  the size of the rest of him, waved about helplessly as he looked.
+               </p>
+            </div>
+         </div>
+
+         <div style="height: 40px"></div>
+      </main>
+      <footer>
+         <div>
+            <p>PWA WORKSHOP - &copy; Craig West 2020</p>
+         </div>
+      </footer>
+      <!-- $PWA -->
+
+      <!-- MAINTAIN OFFLINE STYLE WHEN NAVIGATING OFFLINE -->
+      <script src="./js/is-offline.js"></script>
+      <!-- RESPOND TO CHANGE IN ONLINE?OFFLINE -->
+      <script src="./js/gone-offline.js"></script>
+   </body>
+</html>
