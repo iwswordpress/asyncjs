@@ -10,6 +10,9 @@ const localAssets = [
 	'./manifest.json',
 	'./', // for when not page specified, we need the base url
 	'./index.html',
+	'./article.html',
+	'./articles.html',
+	'./contacts.html',
 	'./fallback.html',
 	'./fallback2.html',
 	'./images/offline-black.png',
