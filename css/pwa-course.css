@@ -11,8 +11,8 @@
 	padding: 0px;
 }
 html {
-	/* https://aykevl.nl/2014/09/fix-jumping-scrollbar */
 	margin-left: calc(100vw - 100%);
+	margin-right: 0;
 }
 
 @media screen and (min-width: 960px) {
@@ -28,8 +28,8 @@ body {
 	background: white;
 }
 
-main {
-	margin: 0 15px;
+nav {
+	width: 100vw;
 }
 
 input {

@@ -9,7 +9,7 @@
       <link type="text/css" href="./css/pwa-course.css" rel="stylesheet" />
       <!-- $PWA -->
       <link rel="manifest" href="./manifest.json" />
-
+      <title>FALLBACK 1</title>
       <!-- The theme-color value for the name attribute of the meta element indicates a suggested color that user agents should use to customize the display of the page or of the surrounding user interface. If specified, the content attribute must contain a valid CSS color. -->
       <meta name="theme-color" content="#2196f3" />
       <!-- Apple -->
@@ -24,7 +24,7 @@
       <meta name="msapplication-TileColor" content="#2D91F8" />
       <meta name="msapplication-TileImage" content="./images-manifest/icons/ms-icon-144x144.png" />
 
-      <title>CONTACTS</title>
+      <title>ARTICLES</title>
    </head>
 
    <body>
@@ -48,7 +48,6 @@
          </div>
          <br />
       </main>
-
       <script src="https://unpkg.com/localbase/dist/localbase.min.js"></script>
       <script>
          // contacts loaded async so will not be displayed as accessing db will run sync
@@ -82,7 +81,6 @@
             `Time taken to access IndexedDB and render contacts: ${t1 - t0} milliseconds.`,
          );
       </script>
-
       <footer>
          <div class="w3-container w3-blue w3-center footer">
             <p>PWA WORKSHOP - &copy; Craig West 2020</p>

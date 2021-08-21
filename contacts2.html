@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=0, user-scalable=0" />
+    <meta name="Description" content="PWA WORKSHOP" />
+    <meta name="Description" content="Author: YOU" />
+    <link type="text/css" href="./css/pwa-course.css" rel="stylesheet" />
+    <!-- $PWA -->
+    <link rel="manifest" href="./manifest.json" />
+    <title>FALLBACK 1</title>
+    <!-- The theme-color value for the name attribute of the meta element indicates a suggested color that user agents should use to customize the display of the page or of the surrounding user interface. If specified, the content attribute must contain a valid CSS color. -->
+    <meta name="theme-color" content="#2196f3" />
+    <!-- Apple -->
+    <meta name="apple-mobile-web-app-title" content="wpPWA" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <!-- or translucent -->
+    <link rel="apple-touch-startup-image" href="./images/wppwa.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./images-manifest/apple-touch-icon-180x180.png" />
+    <link rel="icon" type="image/png" href="./images-manifest/icon-144x144.png" sizes="144x144" />
+    <!-- Microsoft -->
+    <meta name="msapplication-TileColor" content="#2D91F8" />
+    <meta name="msapplication-TileImage" content="./images-manifest/icons/ms-icon-144x144.png" />
+
+    <title>ARTICLES</title>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div>
+        <img src="./images/offline.png" id="offline-image"
+          style="display: none; width: 30px; color: white; height: 30px; margin-left: 10px" alt="offline image" />
+      </div>
+      <div class="navbar-links">
+        <ul>
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="articles.html">POSTS</a></li>
+          <li><a href="contacts.html">CONTACTS</a></li>
+          <li><a href="form.html">FORM</a></li>
+        </ul>
+      </div>
+    </nav>
+    <main>
+      <div class="card">
+        <div id="mainContent"></div>
+      </div>
+      <br />
+    </main>
+    <script src="https://unpkg.com/localbase/dist/localbase.min.js"></script>
+    <script>
+      // contacts loaded async so will not be displayed as accessing db will run sync
+
+      const mainContent = document.getElementById('mainContent');
+      // use the Performance API to measure get times
+      const t0 = performance.now();
+
+      let db = new Localbase('db');
+      db.collection('users')
+        .get()
+        .then(users => {
+          console.log(users);
+          let output = '<div style="display:flex;flex-wrap: wrap; justify-content:center;">';
+          for (var i = 0; i < users.length; i++) {
+
+            output += '<div class="contact-card">';
+            output += `<img style="border-radius:50%; margin:10px;float:left;"src='${users[i].avatar}' alt='avatar'/>`;
+            output += `${users[i].firstName}  ${users[i].lastName}<br>`;
+            output += users[i].email + '<br>';
+            output += users[i].telMob + '<br>';
+            output += '</div>';
+
+          }
+          output += '</div>';
+          mainContent.innerHTML = output;
+        });
+      const t1 = performance.now();
+      console.clear();
+      console.log(
+        `Time taken to access IndexedDB and render contacts: ${t1 - t0} milliseconds.`,
+      );
+    </script>
+    <footer>
+      <div class="w3-container w3-blue w3-center footer">
+        <p>PWA WORKSHOP - &copy; Craig West 2020</p>
+      </div>
+    </footer>
+
+    <!-- MAINTAIN OFFLINE STYLE WHEN NAVIGATING OFFLINE -->
+    <script src="./js/is-offline.js"></script>
+    <!-- RESPOND TO CHANGE IN ONLINE?OFFLINE -->
+    <script src="./js/gone-offline.js"></script>
+  </body>
+
+</html>
