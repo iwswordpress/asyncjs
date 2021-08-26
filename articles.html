@@ -71,8 +71,9 @@
                   // We stored file with ignoreSearch = true
                   articleURL = `article.html?id=${response[i].id}`;
                   // prettier-ignore
-                  output += `<p>${i + 1}. Article Number: ${response[i].id}`;
-                  output += ` - <a href='${articleURL}'>${response[i].title}</a></p>`;
+                  // output += `<p>${i + 1}. Article Number: ${response[i].id}`;
+                  output += `<p>${i + 1}. `;
+                  output += `<a href='${articleURL}'>${response[i].title}</a></p>`;
                }
                // output posts to page
                document.getElementById('mainContent').innerHTML = output;
@@ -82,7 +83,7 @@
             });
       </script>
       <footer>
-         <div class="w3-container w3-blue w3-center footer">
+         <div>
             <p>PWA WORKSHOP - &copy; Craig West 2020</p>
          </div>
       </footer>

@@ -54,7 +54,7 @@ function submitForm() {
 				const resUpper = res.data.toUpperCase();
 				const valid = res.valid;
 				// SEND MESSAGE AND NOTIFICTION
-				sendMessage(`${rnd} ${resUpper} [SW to PAGE] SUCCESS: ${valid}`);
+				sendMessage(`${rnd} ${resUpper} [SW to PAGE] <br>SUCCESS: ${valid}`);
 				title = `${rnd} ${resUpper} SUCCESSFUL: ${valid} `;
 				const reply = `${rnd} ${resUpper} Your form has been received whilst you were offline.`;
 				options = {

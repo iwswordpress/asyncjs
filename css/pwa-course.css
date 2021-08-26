@@ -15,26 +15,79 @@ html {
 	margin-right: 0;
 }
 
-@media screen and (min-width: 960px) {
-	html {
-		margin-left: calc(100vw - 100%);
-		margin-right: 0;
-	}
-}
 body {
 	font-family: 'Quicksand', sans-serif;
 	color: black;
-	font-size: 18px;
+	font-size: 16px;
 	background: white;
 }
 
-nav {
-	width: 100vw;
+.navbar {
+	display: flex;
+	position: relative;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--primary, purple);
+	color: white;
+	padding: 10px 0 0 0;
+	height: 50px;
+	font-size: 18px;
+}
+
+.navbar-links {
+	height: 100%;
+}
+
+.navbar-links ul {
+	display: flex;
+	margin: 0;
+	padding: 0px;
+}
+
+.navbar-links li {
+	list-style: none;
+}
+
+.navbar-links li a {
+	display: block;
+	text-decoration: none;
+	color: white;
+	font-size: 18px;
+}
+
+.navbar-links li a:hover {
+	display: block;
+	text-decoration: none;
+	color: var(--hover, orange);
+}
+
+@media screen and (max-width: 620px) {
+	.navbar {
+		display: flex;
+		position: relative;
+		justify-content: center;
+		align-items: center;
+		background: var(--primary, purple);
+		color: white;
+		padding: 10px -5px;
+		height: 40px;
+	}
+	.navbar-links li a {
+		display: block;
+		text-decoration: none;
+		color: white;
+		font-size: 14px;
+	}
+
+	footer > div > p {
+		font-size: 1rem;
+	}
 }
 
 input {
 	padding: 5px 10px;
 	border-radius: 5px;
+	max-width: 100%;
 }
 
 a,
@@ -104,7 +157,7 @@ footer {
 	position: relative;
 	justify-content: center;
 	align-items: center;
-	background-color: var(--primary, purple);
+	background: var(--primary, purple);
 	color: white;
 	padding: 10px 0;
 }
@@ -160,6 +213,7 @@ footer {
 	border: 2px solid grey;
 	padding: 10px;
 	margin: 10px 0px;
+	max-width: 100%;
 }
 
 .file {
@@ -170,44 +224,4 @@ footer {
 .sample-image {
 	width: 100px;
 	height: 100px;
-}
-
-.navbar {
-	display: flex;
-	position: relative;
-	justify-content: center;
-	align-items: center;
-	background-color: var(--primary, purple);
-	color: white;
-	padding: 10px 0 0 0;
-	height: 50px;
-	font-size: 24px;
-}
-
-.navbar-links {
-	height: 100%;
-}
-
-.navbar-links ul {
-	display: flex;
-	text-align: center;
-	margin: 0;
-	padding: 0px;
-}
-
-.navbar-links li {
-	list-style: none;
-}
-
-.navbar-links li a {
-	display: block;
-	text-decoration: none;
-	color: white;
-	font-size: 20px;
-}
-
-.navbar-links li a:hover {
-	display: block;
-	text-decoration: none;
-	color: var(--hover, orange);
 }
