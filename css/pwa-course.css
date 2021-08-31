@@ -22,6 +22,33 @@ body {
 	background: white;
 }
 
+@media screen and (max-width: 620px) {
+	.navbar {
+		display: flex;
+		position: relative;
+		justify-content: center;
+		align-items: center;
+		background: var(--primary, purple);
+		color: white;
+		padding: 10px -5px;
+		height: 40px;
+	}
+	.navbar-links li a {
+		display: block;
+		text-decoration: none;
+		color: white;
+		font-size: 14px;
+	}
+
+	footer > div > p {
+		font-size: 1rem;
+	}
+	h1,
+	h2,
+	p {
+		font-size: 16px;
+	}
+}
 .navbar {
 	display: flex;
 	position: relative;
@@ -59,29 +86,6 @@ body {
 	display: block;
 	text-decoration: none;
 	color: var(--hover, orange);
-}
-
-@media screen and (max-width: 620px) {
-	.navbar {
-		display: flex;
-		position: relative;
-		justify-content: center;
-		align-items: center;
-		background: var(--primary, purple);
-		color: white;
-		padding: 10px -5px;
-		height: 40px;
-	}
-	.navbar-links li a {
-		display: block;
-		text-decoration: none;
-		color: white;
-		font-size: 14px;
-	}
-
-	footer > div > p {
-		font-size: 1rem;
-	}
 }
 
 input {
