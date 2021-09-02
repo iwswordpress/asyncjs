@@ -1,8 +1,3 @@
-copy form.html
-sw-messaging
-sw - has path to idb changed
-index.html
-requestnotifications
-frm 43
+## Offline and 'instant' websites using PWA technologies.
 
-From Lesson 43
+## Talk for Brighton AsyncJS, 2nd September 2021.
