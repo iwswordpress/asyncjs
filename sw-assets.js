@@ -1,11 +1,14 @@
+// Create some caches (folders) for our app.
 const staticLocalCacheName = 'PRECACHE-V' + version;
 // in case remote fails it does not affect local assets which are promises
 // one fails then all fails
 const staticRemoteCacheName = 'PRECACHE-REMOTE-V' + version;
 // ADD DYNAMIC CACHE CONSTANT
 var dynamicCacheName = 'DYNAMIC-V' + version;
+// Fallback pages if offline and no cache copy. Can change depending on resource requested.
 var FALLBACK_PAGE = 'fallback.html';
 var FALLBACK_PAGE2 = 'fallback2.html';
+// Precache shell of app. Essentials to avoid slowing down iniital load. Can load more once page loaded.
 const localAssets = [
 	'./manifest.json',
 	'./', // for when not page specified, we need the base url
@@ -25,6 +28,7 @@ const localAssets = [
 
 	// if you mistype or call a file not available, they all fail to load as it is a promise and transaction based.
 ];
+// As loading assets is a transaction, we can separate local and remote assets in case remote assets not available, which would cause all loading to fail.
 const remoteAssets = [
 	'https://fonts.googleapis.com/css?family=Quicksand',
 	'https://fonts.googleapis.com/css2?family=Quicksand',

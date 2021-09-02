@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
    <head>
       <meta charset="UTF-8" />
-      <meta
-         name="viewport"
-         content="width=device-width, initial-scale=1, shrink-to-fit=0, user-scalable=0"
-      />
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=0, user-scalable=0" />
       <meta name="Description" content="PWA WORKSHOP" />
       <meta name="Description" content="Author: YOU" />
       <link type="text/css" href="./css/pwa-course.css" rel="stylesheet" />
@@ -20,11 +18,7 @@
       <meta name="apple-mobile-web-app-status-bar-style" content="black" />
       <!-- or translucent -->
       <link rel="apple-touch-startup-image" href="./images/wppwa.png" />
-      <link
-         rel="apple-touch-icon"
-         sizes="180x180"
-         href="./images-manifest/apple-touch-icon-180x180.png"
-      />
+      <link rel="apple-touch-icon" sizes="180x180" href="./images-manifest/apple-touch-icon-180x180.png" />
       <link rel="icon" type="image/png" href="./images-manifest/icon-144x144.png" sizes="144x144" />
       <!-- Microsoft -->
       <meta name="msapplication-TileColor" content="#2D91F8" />
@@ -34,12 +28,8 @@
    <body>
       <nav class="navbar">
          <div>
-            <img
-               src="./images/offline.png"
-               id="offline-image"
-               style="display: none; width: 30px; color: white; height: 30px; margin-left: 10px"
-               alt="offline image"
-            />
+            <img src="./images/offline.png" id="offline-image"
+               style="display: none; width: 30px; color: white; height: 30px; margin-left: 10px" alt="offline image" />
          </div>
          <div class="navbar-links">
             <ul>
@@ -53,9 +43,9 @@
 
       <main>
          <div class="card">
-             <h1>PAGE CACHING</h1>
- 
-             <div onmouseover="addToCache('./sample01.html');" style="
+            <h1>PAGE CACHING</h1>
+
+            <div onmouseover="addToCache('./sample01.html');" style="
                          margin-top: 60px;
                          border: 2px solid #ccc;
                          height: 100px;
@@ -64,9 +54,9 @@
                          padding: 20px;
                          border-radius: 10px;
                      ">
-                   <h3>OnMouseover adds <a href="./sample01.html">SAMPLE01.html</a</h3>
-             </div>
-             <div onmouseover="addToCache('./sample02.html');" style="
+               <h3>OnMouseover adds <a href="./sample01.html">SAMPLE01.html</a< /h3>
+            </div>
+            <div onmouseover="addToCache('./sample02.html');" style="
                          margin-top: 60px;
                          border: 2px solid #ccc;
                          height: 100px;
@@ -75,12 +65,12 @@
                          padding: 20px;
                          border-radius: 10px;
                      ">
-                 <h3>OnMouseover adds <a href="./sample02.html">SAMPLE02.html</a</h3>
-                 
-             </div>
+               <h3>OnMouseover adds <a href="./sample02.html">SAMPLE02.html</a< /h3>
+
+            </div>
          </div>
          <div style="height: 40px"></div>
-     </main>
+      </main>
       <!-- $PWA -->
       <script>
          function addToCache(page) {
@@ -91,15 +81,16 @@
          }
       </script>
 
-      <footer>
+      <!-- <footer>
          <div>
             <p>PWA WORKSHOP - &copy; Craig West 2020</p>
          </div>
-      </footer>
+      </footer> -->
 
       <!-- MAINTAIN OFFLINE STYLE WHEN NAVIGATING OFFLINE -->
       <script src="./js/is-offline.js"></script>
       <!-- RESPOND TO CHANGE IN ONLINE?OFFLINE -->
       <script src="./js/gone-offline.js"></script>
    </body>
+
 </html>

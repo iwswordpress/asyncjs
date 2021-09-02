@@ -15,9 +15,11 @@ importScripts('./js/idb-fn.js');
 self.addEventListener('install', loadPrecache);
 // Activate SW so it is now LIVE and in controll.
 self.addEventListener('activate', activateSW);
-
-//cacheThenNetworkAndStoreThenFallback
+// cacheThenNetworkAndStoreThenFallback
 self.addEventListener('fetch', cacheElseNetworkAndStoreDynamic);
+
+////////////////
+// BackgroundSync event listener to detect when back online
 self.addEventListener('sync', function (event) {
 	// 1. Get data from IDB.
 	// 2. Send data with fetch.
